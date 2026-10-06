@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { X, Calendar, Clock, Car, User, Phone, MessageSquare, Shield, CheckCircle2, ArrowRight, MessageCircle } from "lucide-react";
+import { X, Car, User, Phone, CheckCircle2, MessageCircle } from "lucide-react";
 import confetti from "canvas-confetti";
 import { STUDIO_INFO, SERVICES } from "../data/content";
 
@@ -17,7 +17,6 @@ export default function BookingModal({ isOpen, onClose, initialService = "" }) {
 
   useEffect(() => {
     if (initialService) {
-      // Find matching service name
       const found = SERVICES.find(
         (s) => s.name.toLowerCase().includes(initialService.toLowerCase()) ||
                s.id.toLowerCase().includes(initialService.toLowerCase())
@@ -27,8 +26,8 @@ export default function BookingModal({ isOpen, onClose, initialService = "" }) {
       } else {
         setService(initialService);
       }
-    } else if (!service) {
-      setService("PPF (Paint Protection Film)");
+    } else if (!service && SERVICES.length > 0) {
+      setService(SERVICES[0].name);
     }
   }, [initialService]);
 
@@ -66,7 +65,7 @@ export default function BookingModal({ isOpen, onClose, initialService = "" }) {
       return;
     }
     if (!carModel.trim()) {
-      setError("Please enter your car make and model (e.g. Mercedes C-Class, Thar, Fortuner)");
+      setError("Please enter your car make and model (e.g. Mercedes E-Class, Thar, BMW M, Fortuner)");
       return;
     }
 
@@ -80,30 +79,25 @@ export default function BookingModal({ isOpen, onClose, initialService = "" }) {
         })
       : "Flexible";
 
-    const messageLines = [
-      "*DETAILING REBELS — JAIPUR*",
-      "_Premium Automotive Detailing Studio_",
-      "━━━━━━━━━━━━━━━━━━━━━",
-      "*STUDIO BOOKING ENQUIRY*",
+    const lines = [
+      "Hello AV Car Care,",
       "",
-      `• *Client Name:* ${name.trim()}`,
-      `• *Contact:* ${phone.trim()}`,
-      `• *Vehicle:* ${carModel.trim()}`,
-      `• *Service:* ${service.trim()}`,
-      `• *Preferred Date:* ${formattedDate}`,
-      `• *Preferred Slot:* ${time.trim()}`,
+      "I would like to enquire about your service.",
+      "",
+      `Name: ${name.trim()}`,
+      `Car: ${carModel.trim()}`,
+      `Service: ${service.trim()}`,
+      `Preferred Date: ${formattedDate}`,
+      `Preferred Time: ${time.trim()}`,
     ];
 
     if (message && message.trim()) {
-      messageLines.push(`• *Notes:* ${message.trim()}`);
+      lines.push(`Message: ${message.trim()}`);
     }
 
-    messageLines.push(
-      "━━━━━━━━━━━━━━━━━━━━━",
-      "Hello Team, please check slot availability for my vehicle at your Jaipur studio."
-    );
+    lines.push("", "Please let me know the availability and details.");
 
-    const text = messageLines.join("\n");
+    const text = lines.join("\n");
     const encodedText = encodeURIComponent(text);
     const whatsappUrl = `https://wa.me/${STUDIO_INFO.whatsappNumber}?text=${encodedText}`;
 
@@ -113,7 +107,7 @@ export default function BookingModal({ isOpen, onClose, initialService = "" }) {
         particleCount: 50,
         spread: 60,
         origin: { y: 0.7 },
-        colors: ["#ff1a2b", "#ffffff", "#34d399"],
+        colors: ["#d4af37", "#ff1a2b", "#ffffff"],
       });
     } catch (err) {
       // ignore
@@ -130,21 +124,33 @@ export default function BookingModal({ isOpen, onClose, initialService = "" }) {
     onClose();
   };
 
+  const formattedDatePreview = date
+    ? new Date(date).toLocaleDateString("en-IN", {
+        day: "numeric",
+        month: "short",
+        year: "numeric",
+      })
+    : "Preferred Date";
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-in fade-in duration-200">
       <div
-        className="relative w-full max-w-xl rounded-2xl bg-[#0e0e13] border border-white/15 shadow-2xl shadow-black overflow-hidden flex flex-col max-h-[92vh]"
+        className="relative w-full max-w-xl rounded-2xl bg-[#0c0c10] border border-white/15 shadow-2xl shadow-black overflow-hidden flex flex-col max-h-[92vh]"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Top Header */}
         <div className="p-6 bg-gradient-to-r from-zinc-950 via-zinc-900 to-zinc-950 border-b border-white/10 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-[#ff1a2b]/20 border border-[#ff1a2b]/40 flex items-center justify-center text-[#ff1a2b]">
-              <Calendar className="w-5 h-5" />
+            <div className="h-10 w-auto rounded-lg bg-black border border-white/10 p-1 flex items-center justify-center">
+              <img
+                src="/images/av-car-care-logo.jpg"
+                alt="AV Car Care"
+                className="h-full w-auto object-contain"
+              />
             </div>
             <div>
-              <span className="text-[10px] font-mono uppercase tracking-widest text-[#ff4d5a] font-bold">
-                Detailing Rebels • Jaipur Studio
+              <span className="text-[10px] font-mono uppercase tracking-widest text-[#d4af37] font-bold">
+                AV Car Care • Studio Enquiry
               </span>
               <h3 className="text-xl font-black text-white font-['Outfit'] uppercase">
                 BOOK YOUR DETAILING
@@ -154,7 +160,7 @@ export default function BookingModal({ isOpen, onClose, initialService = "" }) {
 
           <button
             onClick={onClose}
-            className="p-2 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-zinc-400 hover:text-white border border-white/10 transition-colors"
+            className="p-2 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-zinc-400 hover:text-white border border-white/10 transition-colors cursor-pointer"
             aria-label="Close modal"
           >
             <X className="w-5 h-5" />
@@ -182,10 +188,10 @@ export default function BookingModal({ isOpen, onClose, initialService = "" }) {
                     <input
                       type="text"
                       required
-                      placeholder="e.g. Arjun Sharma"
+                      placeholder="e.g. Rahul Sharma"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      className="w-full pl-9 pr-3 py-2.5 rounded-lg bg-zinc-900/90 border border-white/10 text-white placeholder-zinc-500 text-sm focus:border-[#ff1a2b] focus:outline-none focus:ring-1 focus:ring-[#ff1a2b]"
+                      className="w-full pl-9 pr-3 py-2.5 rounded-lg bg-zinc-900/90 border border-white/10 text-white placeholder-zinc-500 text-sm focus:border-[#d4af37] focus:outline-none focus:ring-1 focus:ring-[#d4af37]"
                     />
                   </div>
                 </div>
@@ -199,10 +205,10 @@ export default function BookingModal({ isOpen, onClose, initialService = "" }) {
                     <input
                       type="tel"
                       required
-                      placeholder="+91 95094 54982"
+                      placeholder="+91 86965 36692"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
-                      className="w-full pl-9 pr-3 py-2.5 rounded-lg bg-zinc-900/90 border border-white/10 text-white placeholder-zinc-500 text-sm focus:border-[#ff1a2b] focus:outline-none focus:ring-1 focus:ring-[#ff1a2b]"
+                      className="w-full pl-9 pr-3 py-2.5 rounded-lg bg-zinc-900/90 border border-white/10 text-white placeholder-zinc-500 text-sm focus:border-[#d4af37] focus:outline-none focus:ring-1 focus:ring-[#d4af37]"
                     />
                   </div>
                 </div>
@@ -218,30 +224,29 @@ export default function BookingModal({ isOpen, onClose, initialService = "" }) {
                   <input
                     type="text"
                     required
-                    placeholder="e.g. Mercedes E-Class / Thar 4x4 / Fortuner / BMW 330i"
+                    placeholder="e.g. Range Rover Sport / BMW M3 / Mercedes G-Wagon / Fortuner"
                     value={carModel}
                     onChange={(e) => setCarModel(e.target.value)}
-                    className="w-full pl-9 pr-3 py-2.5 rounded-lg bg-zinc-900/90 border border-white/10 text-white placeholder-zinc-500 text-sm focus:border-[#ff1a2b] focus:outline-none focus:ring-1 focus:ring-[#ff1a2b]"
+                    className="w-full pl-9 pr-3 py-2.5 rounded-lg bg-zinc-900/90 border border-white/10 text-white placeholder-zinc-500 text-sm focus:border-[#d4af37] focus:outline-none focus:ring-1 focus:ring-[#d4af37]"
                   />
                 </div>
               </div>
 
-              {/* Select Service */}
+              {/* Dynamic Service Selector */}
               <div>
                 <label className="block text-xs font-mono text-zinc-300 uppercase tracking-wider mb-1.5">
-                  Select Detailing Service *
+                  Select Service *
                 </label>
                 <select
                   value={service}
                   onChange={(e) => setService(e.target.value)}
-                  className="w-full px-3 py-2.5 rounded-lg bg-zinc-900/90 border border-white/10 text-white text-sm focus:border-[#ff1a2b] focus:outline-none focus:ring-1 focus:ring-[#ff1a2b]"
+                  className="w-full px-3 py-2.5 rounded-lg bg-zinc-900/90 border border-white/10 text-white text-sm focus:border-[#d4af37] focus:outline-none focus:ring-1 focus:ring-[#d4af37]"
                 >
-                  <option value="PPF (Paint Protection Film)">PPF (Paint Protection Film)</option>
-                  <option value="Ceramic Coating (Nano Ceramic)">Ceramic Coating (Nano Ceramic 10H)</option>
-                  <option value="Car Detailing (Paint Correction)">Car Detailing (Multi-Stage Paint Correction)</option>
-                  <option value="Deep Interior Cleaning & Spa">Deep Interior Cleaning & Sanitization</option>
-                  <option value="Premium Snow Foam Car Wash">Premium Snow Foam Car Wash</option>
-                  <option value="Car Accessories & Styling">Car Accessories & Custom Styling</option>
+                  {SERVICES.map((s) => (
+                    <option key={s.id} value={s.name}>
+                      {s.name}
+                    </option>
+                  ))}
                 </select>
               </div>
 
@@ -255,7 +260,7 @@ export default function BookingModal({ isOpen, onClose, initialService = "" }) {
                     type="date"
                     value={date}
                     onChange={(e) => setDate(e.target.value)}
-                    className="w-full px-3 py-2.5 rounded-lg bg-zinc-900/90 border border-white/10 text-white text-sm focus:border-[#ff1a2b] focus:outline-none"
+                    className="w-full px-3 py-2.5 rounded-lg bg-zinc-900/90 border border-white/10 text-white text-sm focus:border-[#d4af37] focus:outline-none"
                   />
                 </div>
 
@@ -266,7 +271,7 @@ export default function BookingModal({ isOpen, onClose, initialService = "" }) {
                   <select
                     value={time}
                     onChange={(e) => setTime(e.target.value)}
-                    className="w-full px-3 py-2.5 rounded-lg bg-zinc-900/90 border border-white/10 text-white text-sm focus:border-[#ff1a2b] focus:outline-none"
+                    className="w-full px-3 py-2.5 rounded-lg bg-zinc-900/90 border border-white/10 text-white text-sm focus:border-[#d4af37] focus:outline-none"
                   >
                     <option value="10:00 AM - Morning Slot">10:00 AM (Morning Slot)</option>
                     <option value="01:00 PM - Afternoon Slot">01:00 PM (Afternoon Slot)</option>
@@ -279,14 +284,14 @@ export default function BookingModal({ isOpen, onClose, initialService = "" }) {
               {/* Custom Message */}
               <div>
                 <label className="block text-xs font-mono text-zinc-300 uppercase tracking-wider mb-1.5">
-                  Special Notes / Current Paint Condition (Optional)
+                  Message / Special Notes (Optional)
                 </label>
                 <textarea
                   rows="2"
-                  placeholder="Mention any existing scratches, brand new car delivery date, or specific areas of concern..."
+                  placeholder="Mention paint condition, brand new vehicle delivery, or specific areas of concern..."
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
-                  className="w-full px-3 py-2 rounded-lg bg-zinc-900/90 border border-white/10 text-white placeholder-zinc-500 text-sm focus:border-[#ff1a2b] focus:outline-none"
+                  className="w-full px-3 py-2 rounded-lg bg-zinc-900/90 border border-white/10 text-white placeholder-zinc-500 text-sm focus:border-[#d4af37] focus:outline-none"
                 />
               </div>
 
@@ -295,34 +300,35 @@ export default function BookingModal({ isOpen, onClose, initialService = "" }) {
                 <div className="flex items-center justify-between text-[11px] font-mono text-emerald-400 mb-2">
                   <span className="flex items-center gap-1.5 font-bold">
                     <MessageCircle className="w-3.5 h-3.5" />
-                    WhatsApp Format Preview
+                    WhatsApp Enquiry Preview
                   </span>
                   <span className="text-[10px] text-zinc-500">Auto-formatted</span>
                 </div>
-                <div className="p-3 rounded-lg bg-[#111b21] text-xs font-mono text-zinc-200 space-y-1 border-l-2 border-emerald-500">
-                  <div className="text-white font-bold">DETAILING REBELS — JAIPUR</div>
-                  <div className="text-zinc-400 italic text-[11px]">Premium Automotive Detailing Studio</div>
+                <div className="p-3 rounded-lg bg-[#111b21] text-xs font-mono text-zinc-200 space-y-1.5 border-l-2 border-emerald-500">
+                  <div className="text-white font-bold">Hello AV Car Care,</div>
+                  <div className="text-zinc-400 italic text-[11px]">I would like to enquire about your service.</div>
                   <div className="text-zinc-600 text-[10px]">───────────────────────</div>
-                  <div>• <strong className="text-white">Customer:</strong> {name || "Your Name"}</div>
-                  <div>• <strong className="text-white">Phone:</strong> {phone || "+91 95094 54982"}</div>
-                  <div>• <strong className="text-white">Vehicle:</strong> {carModel || "Your Car Make & Model"}</div>
+                  <div>• <strong className="text-white">Name:</strong> {name || "[Name]"}</div>
+                  <div>• <strong className="text-white">Car:</strong> {carModel || "[Car Model]"}</div>
                   <div>• <strong className="text-white">Service:</strong> {service}</div>
-                  <div>• <strong className="text-white">Date:</strong> {date || "Preferred Date"} ({time.split("-")[0].trim()})</div>
-                  {message && <div>• <strong className="text-white">Notes:</strong> {message}</div>}
+                  <div>• <strong className="text-white">Preferred Date:</strong> {formattedDatePreview}</div>
+                  <div>• <strong className="text-white">Preferred Time:</strong> {time}</div>
+                  {message && <div>• <strong className="text-white">Message:</strong> {message}</div>}
+                  <div className="text-zinc-400 italic text-[11px] pt-1">Please let me know the availability and details.</div>
                 </div>
               </div>
 
               {/* Submission Button */}
               <button
                 type="submit"
-                className="w-full flex items-center justify-center gap-2.5 py-3.5 px-6 rounded-lg text-sm font-bold font-mono tracking-wider uppercase text-white bg-gradient-to-r from-[#ff1a2b] via-[#e61222] to-[#b30816] hover:from-[#ff3344] hover:to-[#d61323] shadow-xl shadow-red-950/60 transition-all cursor-pointer"
+                className="w-full flex items-center justify-center gap-2.5 py-3.5 px-6 rounded-lg text-sm font-bold font-mono tracking-wider uppercase text-white bg-gradient-to-r from-[#ff1a2b] via-[#e61222] to-[#b30816] hover:from-[#ff3344] hover:to-[#c70f1e] shadow-xl shadow-red-950/60 transition-all cursor-pointer"
               >
                 <MessageCircle className="w-4 h-4 text-white" />
-                <span>Continue on WhatsApp</span>
+                <span>Send WhatsApp Enquiry</span>
               </button>
 
               <p className="text-[11px] text-zinc-500 text-center font-mono">
-                Your request details will be opened directly in WhatsApp with our Jaipur Studio coordinator. No spam guaranteed.
+                This is an enquiry sent through WhatsApp to +91 86965 36692. Availability will be confirmed by the studio coordinator.
               </p>
             </form>
           ) : (
@@ -333,29 +339,29 @@ export default function BookingModal({ isOpen, onClose, initialService = "" }) {
               </div>
 
               <h4 className="text-2xl font-bold text-white font-['Outfit']">
-                WhatsApp Link Prepared!
+                WhatsApp Enquiry Prepared!
               </h4>
 
               <p className="text-zinc-300 text-sm max-w-md mx-auto leading-relaxed">
-                Thank you <strong className="text-white">{name}</strong>. Your detailing request for your <strong className="text-white">{carModel}</strong> has opened in WhatsApp.
+                Thank you <strong className="text-white">{name}</strong>. Your enquiry for your <strong className="text-white">{carModel}</strong> has opened in WhatsApp.
               </p>
 
               <div className="p-4 rounded-xl bg-zinc-900/80 border border-white/10 text-left text-xs font-mono space-y-1.5 max-w-md mx-auto">
-                <div className="text-zinc-400">Recipient: <span className="text-white">Detailing Rebels Jaipur ({STUDIO_INFO.phone})</span></div>
-                <div className="text-zinc-400">Service: <span className="text-[#ff4d5a]">{service}</span></div>
-                <div className="text-zinc-400">Slot Request: <span className="text-white">{date} ({time})</span></div>
+                <div className="text-zinc-400">Recipient: <span className="text-white">AV Car Care ({STUDIO_INFO.phone})</span></div>
+                <div className="text-zinc-400">Service: <span className="text-[#e5c158]">{service}</span></div>
+                <div className="text-zinc-400">Preferred Slot: <span className="text-white">{formattedDatePreview} ({time})</span></div>
               </div>
 
               <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
                 <button
                   onClick={handleSubmit}
-                  className="w-full sm:w-auto px-5 py-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-mono font-bold uppercase transition-colors"
+                  className="w-full sm:w-auto px-5 py-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-mono font-bold uppercase transition-colors cursor-pointer"
                 >
                   Re-Open WhatsApp
                 </button>
                 <button
                   onClick={handleReset}
-                  className="w-full sm:w-auto px-5 py-2.5 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-zinc-300 text-xs font-mono uppercase transition-colors"
+                  className="w-full sm:w-auto px-5 py-2.5 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-zinc-300 text-xs font-mono uppercase transition-colors cursor-pointer"
                 >
                   Close Window
                 </button>
@@ -369,7 +375,7 @@ export default function BookingModal({ isOpen, onClose, initialService = "" }) {
           <span>Prefer direct call?</span>
           <a
             href={`tel:${STUDIO_INFO.phone.replace(/\s+/g, "")}`}
-            className="text-[#ff4d5a] hover:text-white font-bold flex items-center gap-1"
+            className="text-[#e5c158] hover:text-white font-bold flex items-center gap-1"
           >
             <Phone className="w-3 h-3" />
             {STUDIO_INFO.phone}

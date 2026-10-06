@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { Shield, Sparkles, Disc, Armchair, Droplets, Wrench, ArrowRight, CheckCircle2, Clock } from "lucide-react";
-import { SERVICES } from "../data/content";
+import { Shield, Sparkles, Disc, Armchair, Droplets, Wrench, ArrowRight, CheckCircle2, Clock, Layers } from "lucide-react";
+import { SERVICES, STUDIO_INFO } from "../data/content";
 
 const serviceIcons = {
   ppf: Shield,
+  borophene: Layers,
   ceramic: Sparkles,
   detailing: Disc,
   interior: Armchair,
@@ -17,23 +18,24 @@ export default function Services({ onOpenBooking }) {
   const activeService = SERVICES.find((s) => s.id === activeServiceId) || SERVICES[0];
 
   return (
-    <section id="services" className="py-24 lg:py-32 bg-[#08080a] relative border-b border-white/10 carbon-mesh overflow-hidden">
+    <section id="services" className="py-24 lg:py-32 bg-[#060608] relative border-b border-white/10 carbon-mesh overflow-hidden">
       {/* Ambient background glow */}
       <div className="absolute top-1/4 left-0 w-96 h-96 bg-[#ff1a2b]/10 rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-[#d4af37]/10 rounded-full blur-[160px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-zinc-900 border border-[#ff1a2b]/30 text-xs font-mono text-[#ff4d5a] uppercase tracking-widest mb-3">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#ff1a2b]" />
-              Precision Automotive Care
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-zinc-900 border border-[#d4af37]/30 text-xs font-mono text-[#e5c158] uppercase tracking-widest mb-3">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#d4af37]" />
+              AV Car Care Disciplines
             </div>
             <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight uppercase font-['Outfit']">
               STUDIO SERVICES
             </h2>
             <p className="mt-3 text-zinc-400 text-sm sm:text-base leading-relaxed font-light">
-              Hover over each discipline to inspect our studio methods, optical standards, and warranty coverage.
+              Explore our core disciplines: Paint Protection Film, Borophene & Ceramic Coatings, Precision Detailing, and Interior Restoration.
             </p>
           </div>
 
@@ -41,16 +43,16 @@ export default function Services({ onOpenBooking }) {
             <button
               onClick={() => onOpenBooking()}
               data-cursor="QUOTE"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-zinc-900 hover:bg-[#ff1a2b] border border-white/10 hover:border-[#ff1a2b] text-xs font-mono font-bold uppercase text-white transition-all duration-200"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-zinc-900 hover:bg-[#ff1a2b] border border-white/10 hover:border-[#ff1a2b] text-xs font-mono font-bold uppercase text-white transition-all duration-200 cursor-pointer"
             >
-              <span>Custom Consultation</span>
+              <span>Enquire Now</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </div>
         </div>
 
         {/* DESKTOP: Large Interactive Service Panels (Split Master View) */}
-        <div className="hidden lg:grid grid-cols-12 gap-8 items-stretch min-h-[580px]">
+        <div className="hidden lg:grid grid-cols-12 gap-8 items-stretch min-h-[600px]">
           {/* Left Service Menu Panels */}
           <div className="col-span-5 flex flex-col justify-between space-y-2">
             {SERVICES.map((service, idx) => {
@@ -63,21 +65,21 @@ export default function Services({ onOpenBooking }) {
                   onMouseEnter={() => setActiveServiceId(service.id)}
                   onClick={() => setActiveServiceId(service.id)}
                   data-cursor="EXPLORE"
-                  className={`group relative p-4 rounded-xl border transition-all duration-300 cursor-pointer flex items-center justify-between ${
+                  className={`group relative p-3.5 rounded-xl border transition-all duration-300 cursor-pointer flex items-center justify-between ${
                     isActive
-                      ? "bg-zinc-900/90 border-[#ff1a2b] shadow-xl shadow-red-950/40 translate-x-2"
+                      ? "bg-zinc-900/95 border-[#d4af37] shadow-xl shadow-black translate-x-2"
                       : "bg-zinc-950/60 border-white/5 hover:border-white/20 hover:bg-zinc-900/50"
                   }`}
                 >
-                  {/* Left Red Indicator Bar */}
+                  {/* Left Red & Gold Indicator Bar */}
                   {isActive && (
-                    <div className="absolute left-0 inset-y-0 w-1 bg-[#ff1a2b] rounded-l-xl shadow-[0_0_12px_#ff1a2b]" />
+                    <div className="absolute left-0 inset-y-0 w-1 bg-gradient-to-b from-[#ff1a2b] to-[#d4af37] rounded-l-xl shadow-[0_0_12px_#d4af37]" />
                   )}
 
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-3.5">
                     <span
-                      className={`text-xl font-black font-['Space_Grotesk'] ${
-                        isActive ? "text-[#ff1a2b]" : "text-zinc-600"
+                      className={`text-lg font-black font-['Space_Grotesk'] ${
+                        isActive ? "text-[#e5c158]" : "text-zinc-600"
                       }`}
                     >
                       0{idx + 1}
@@ -85,7 +87,7 @@ export default function Services({ onOpenBooking }) {
 
                     <div>
                       <h3
-                        className={`text-base font-bold font-['Outfit'] tracking-wide transition-colors ${
+                        className={`text-sm sm:text-base font-bold font-['Outfit'] tracking-wide transition-colors ${
                           isActive ? "text-white" : "text-zinc-400 group-hover:text-zinc-200"
                         }`}
                       >
@@ -107,7 +109,7 @@ export default function Services({ onOpenBooking }) {
                     </div>
                     <ArrowRight
                       className={`w-4 h-4 transition-transform duration-300 ${
-                        isActive ? "translate-x-1 text-[#ff1a2b]" : "opacity-0 group-hover:opacity-100 text-zinc-500"
+                        isActive ? "translate-x-1 text-[#e5c158]" : "opacity-0 group-hover:opacity-100 text-zinc-500"
                       }`}
                     />
                   </div>
@@ -127,12 +129,12 @@ export default function Services({ onOpenBooking }) {
             />
 
             {/* Gradient Overlays */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#060608] via-[#060608]/70 to-[#060608]/30" />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#060608]/80 via-transparent to-[#060608]/60" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#060608] via-[#060608]/75 to-[#060608]/30" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#060608]/85 via-transparent to-[#060608]/60" />
 
             {/* Top Badges */}
             <div className="absolute top-6 left-6 right-6 flex items-center justify-between z-10">
-              <span className="px-3 py-1 rounded-md text-[11px] font-mono uppercase tracking-wider bg-black/80 backdrop-blur-md border border-white/15 text-zinc-200 font-bold">
+              <span className="px-3 py-1 rounded-md text-[11px] font-mono uppercase tracking-wider bg-black/80 backdrop-blur-md border border-[#d4af37]/30 text-[#fff0a8] font-bold">
                 {activeService.badge}
               </span>
               <span className="px-3 py-1 rounded-md text-[11px] font-mono text-[#ff4d5a] bg-zinc-950/80 border border-[#ff1a2b]/30 flex items-center gap-1.5">
@@ -144,8 +146,8 @@ export default function Services({ onOpenBooking }) {
             {/* Bottom Content Presentation */}
             <div className="relative z-10 space-y-4">
               <div className="inline-block">
-                <span className="text-[11px] font-mono uppercase tracking-widest text-[#ff1a2b] font-bold">
-                  STUDIO DISCIPLINE
+                <span className="text-[11px] font-mono uppercase tracking-widest text-[#d4af37] font-bold">
+                  AV CAR CARE DISCIPLINE
                 </span>
                 <h3 className="text-3xl font-black text-white font-['Outfit'] mt-1">
                   {activeService.name}
@@ -171,20 +173,20 @@ export default function Services({ onOpenBooking }) {
                 <button
                   onClick={() => onOpenBooking(activeService.name)}
                   data-cursor="BOOK"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-lg text-xs font-mono font-bold uppercase tracking-wider text-white bg-[#ff1a2b] hover:bg-[#d61323] transition-colors shadow-lg shadow-red-950/50"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-lg text-xs font-mono font-bold uppercase tracking-wider text-white bg-gradient-to-r from-[#ff1a2b] to-[#b30816] hover:from-[#ff3344] hover:to-[#c70f1e] transition-colors shadow-lg shadow-red-950/50 cursor-pointer"
                 >
                   <span>Book {activeService.name.split("(")[0]}</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </button>
 
                 <a
-                  href={`https://wa.me/919509454982?text=Hello%20Detailing%20Rebels%20Jaipur,%20I%20want%20to%20inquire%20about%20${encodeURIComponent(activeService.name)}`}
+                  href={`https://wa.me/${STUDIO_INFO.whatsappNumber}?text=Hello%20AV%20Car%20Care,%20I%20would%20like%20to%20enquire%20about%20${encodeURIComponent(activeService.name)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   data-cursor="WHATSAPP"
-                  className="px-4 py-3 rounded-lg bg-zinc-900/90 hover:bg-zinc-800 border border-white/10 text-xs font-mono text-zinc-300 hover:text-white transition-colors"
+                  className="px-4 py-3 rounded-lg bg-zinc-900/90 hover:bg-zinc-800 border border-white/10 text-xs font-mono text-emerald-400 hover:text-emerald-300 transition-colors"
                 >
-                  Ask on WhatsApp
+                  WhatsApp Enquiry
                 </a>
               </div>
             </div>
@@ -195,7 +197,6 @@ export default function Services({ onOpenBooking }) {
         <div className="lg:hidden space-y-5">
           {SERVICES.map((service, idx) => {
             const Icon = serviceIcons[service.id] || Shield;
-            const isExpanded = activeServiceId === service.id;
 
             return (
               <div
@@ -203,16 +204,16 @@ export default function Services({ onOpenBooking }) {
                 className="rounded-xl bg-zinc-900/70 border border-white/10 overflow-hidden"
               >
                 {/* Image */}
-                <div className="relative h-48 w-full bg-zinc-950">
+                <div className="relative aspect-[16/9] w-full bg-zinc-950 overflow-hidden">
                   <img
                     src={service.image}
                     alt={service.name}
                     className="w-full h-full object-cover object-center"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/30 to-transparent" />
 
                   <div className="absolute top-3 left-3">
-                    <span className="px-2.5 py-1 rounded bg-black/80 backdrop-blur-md border border-white/10 text-[10px] font-mono text-zinc-200">
+                    <span className="px-2.5 py-1 rounded bg-black/80 backdrop-blur-md border border-[#d4af37]/30 text-[10px] font-mono text-[#fff0a8]">
                       0{idx + 1} • {service.badge}
                     </span>
                   </div>
@@ -243,12 +244,12 @@ export default function Services({ onOpenBooking }) {
                   <div className="pt-3 flex items-center gap-2">
                     <button
                       onClick={() => onOpenBooking(service.name)}
-                      className="flex-1 py-2.5 rounded-lg bg-[#ff1a2b] text-white text-xs font-mono font-bold uppercase tracking-wider text-center"
+                      className="flex-1 py-2.5 rounded-lg bg-[#ff1a2b] text-white text-xs font-mono font-bold uppercase tracking-wider text-center cursor-pointer"
                     >
                       Book Service
                     </button>
                     <a
-                      href={`https://wa.me/919509454982?text=Hello%20Detailing%20Rebels%20Jaipur,%20I%20want%20to%20inquire%20about%20${encodeURIComponent(service.name)}`}
+                      href={`https://wa.me/${STUDIO_INFO.whatsappNumber}?text=Hello%20AV%20Car%20Care,%20I%20would%20like%20to%20enquire%20about%20${encodeURIComponent(service.name)}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="px-3 py-2.5 rounded-lg bg-zinc-800 text-xs font-mono text-emerald-400 border border-white/5"

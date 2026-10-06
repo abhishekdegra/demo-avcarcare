@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Sparkles, Maximize2, X, ChevronLeft, ChevronRight, Eye } from "lucide-react";
+import { Sparkles, Maximize2, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { GALLERY_ITEMS } from "../data/content";
 
 export default function Gallery() {
@@ -55,7 +55,7 @@ export default function Gallery() {
               EDITORIAL GALLERY
             </h2>
             <p className="mt-2 text-zinc-400 text-sm sm:text-base font-light">
-              Real cars, authentic studio craft, and unedited optical clarity captured inside Detailing Rebels Jaipur.
+              Real cars, authentic studio craft, and unedited optical clarity captured inside AV Car Care.
             </p>
           </div>
 
@@ -91,7 +91,7 @@ export default function Gallery() {
                 }`}
               >
                 {/* Image */}
-                <div className={`relative w-full ${isFeatured ? "h-72 sm:h-96" : "h-72 sm:h-80"} overflow-hidden`}>
+                <div className={`relative w-full aspect-[16/10] sm:aspect-auto ${isFeatured ? "sm:h-96" : "sm:h-80"} overflow-hidden`}>
                   <img
                     src={item.image}
                     alt={item.title}

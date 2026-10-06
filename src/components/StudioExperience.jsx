@@ -36,9 +36,9 @@ export default function StudioExperience({ onOpenBooking }) {
     },
     {
       step: "05",
-      title: "Executive Customer Lounge",
+      title: "Executive Customer Experience",
       badge: "VIP Comfort",
-      desc: "Air-conditioned workspace with high-speed Wi-Fi, artisan espresso, and live studio bay viewing.",
+      desc: "Dedicated automotive care coordinators, real-time WhatsApp progress videos, and transparent consultation.",
     },
   ];
 
@@ -49,10 +49,8 @@ export default function StudioExperience({ onOpenBooking }) {
       const rect = containerRef.current.getBoundingClientRect();
       const windowHeight = window.innerHeight;
 
-      // Track height
       setTrackHeight(trackRef.current.clientHeight);
 
-      // Start when container top reaches 70% of viewport, end when bottom reaches 30%
       const start = windowHeight * 0.75;
       const end = -rect.height + windowHeight * 0.25;
       const current = rect.top;
@@ -77,85 +75,108 @@ export default function StudioExperience({ onOpenBooking }) {
     Math.floor(scrollProgress * milestones.length)
   );
 
-  // BMW car position in pixels along track
   const carY = scrollProgress * Math.max(0, trackHeight - 70);
 
   return (
     <section id="studio" className="py-16 lg:py-28 bg-[#060608] relative border-b border-white/10 overflow-hidden">
       {/* Subtle ambient lighting */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[#ff1a2b]/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[#d4af37]/10 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="max-w-3xl mb-10 sm:mb-14">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-zinc-900 border border-[#ff1a2b]/30 text-xs font-mono text-[#ff4d5a] uppercase tracking-widest mb-2.5">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-zinc-900 border border-[#d4af37]/30 text-xs font-mono text-[#e5c158] uppercase tracking-widest mb-2.5">
             <Building2 className="w-3.5 h-3.5" />
-            Jaipur Flagship Studio Standards
+            AV Car Care Studio & Facility Standards
           </div>
 
           <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight uppercase font-['Outfit'] leading-tight">
-            MORE THAN A <span className="text-[#ff1a2b]">CAR WASH.</span>
+            PREMIUM CARE. <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fff0a8] via-[#e5c158] to-[#ff1a2b]">
+              PERFECT FINISH.
+            </span>
           </h2>
 
+          {/* Red & Gold accent line */}
+          <div className="w-24 h-0.5 red-gold-accent-line shadow-[0_0_10px_#d4af37] my-3" />
+
           <p className="mt-1.5 text-base sm:text-lg font-medium text-zinc-300 italic font-['Space_Grotesk']">
-            "Every detail matters."
+            "Professional automotive care delivered with precision."
           </p>
         </div>
 
-        {/* Dual Real Studio Image Showcase (Compact Height) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 mb-12 items-stretch">
-          {/* Main Facade Shot */}
-          <div className="lg:col-span-7 relative rounded-2xl overflow-hidden border border-white/15 bg-zinc-950 shadow-2xl group min-h-[260px] sm:min-h-[340px]">
-            <img
-              src="/images/studio-facade.jpg"
-              alt="Detailing Rebels Detailing Studio Jaipur Exterior Facade"
-              className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-102"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
+        {/* Dual Real Studio Image Showcase featuring official AV CAR CARE Garage */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-12 items-stretch">
+          {/* Main AV CAR CARE Facade & Studio Showcase */}
+          <div className="lg:col-span-7 rounded-2xl overflow-hidden border border-white/15 bg-zinc-950 shadow-2xl flex flex-col group">
+            {/* 16:9 Responsive Image Container */}
+            <div className="relative w-full aspect-[16/9] sm:aspect-[16/10] lg:aspect-auto lg:h-[380px] overflow-hidden bg-black">
+              <img
+                src="/images/av-car-care-garage.jpg"
+                alt="AV Car Care Studio - Premium Automotive Care, Detailing and Protection Facility"
+                className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-102"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
 
-            <div className="absolute bottom-4 left-4 right-4 p-3 sm:p-4 rounded-xl bg-zinc-950/85 backdrop-blur-md border border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
-              <div>
-                <span className="text-[10px] font-mono uppercase tracking-widest text-[#ff1a2b] font-bold">
-                  FLAGSHIP STUDIO FACADE • JAIPUR
+              {/* Discreet floating top badge */}
+              <div className="absolute top-3 right-3 sm:top-4 sm:right-4 z-10">
+                <span className="px-2.5 py-1 rounded-md text-[10px] font-mono uppercase bg-black/85 backdrop-blur-md border border-[#d4af37]/40 text-[#fff0a8] font-bold">
+                  Official Studio Bay
                 </span>
-                <p className="text-xs sm:text-sm font-bold text-white font-['Outfit'] mt-0.5">
-                  DETAILING REBELS STUDIO
+              </div>
+            </div>
+
+            {/* Clean Info & Action Bar */}
+            <div className="p-4 sm:p-5 bg-zinc-950/95 border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div>
+                <span className="text-[10px] font-mono uppercase tracking-widest text-[#e5c158] font-bold">
+                  AV CAR CARE STUDIO
+                </span>
+                <p className="text-sm font-bold text-white font-['Outfit'] mt-0.5">
+                  PREMIUM AUTOMOTIVE CARE FACILITY
                 </p>
-                <p className="text-[11px] text-zinc-400 font-mono">
-                  "Drive Clean. Stay Blessed."
+                <p className="text-xs text-zinc-400 font-mono">
+                  "YOUR CAR. OUR PRIDE."
                 </p>
               </div>
 
-              <a
-                href={STUDIO_INFO.mapUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-zinc-900 border border-white/10 text-xs font-mono text-zinc-200 hover:text-white hover:border-[#ff1a2b]/50 transition-colors shrink-0 w-fit"
+              <button
+                onClick={() => onOpenBooking("Studio Consultation")}
+                className="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-lg bg-gradient-to-r from-[#ff1a2b] to-[#b30816] text-xs font-mono font-bold text-white uppercase hover:from-[#ff3344] transition-colors shrink-0 w-full sm:w-auto cursor-pointer"
               >
-                <MapPin className="w-3.5 h-3.5 text-[#ff1a2b]" />
-                <span>Get Directions</span>
-              </a>
+                <span>Book Studio Visit</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </button>
             </div>
           </div>
 
-          {/* Secondary Interior Bay Shot */}
-          <div className="lg:col-span-5 relative rounded-2xl overflow-hidden border border-white/15 bg-zinc-950 shadow-2xl group min-h-[240px] sm:min-h-[340px]">
-            <img
-              src="/images/studio-mercedes-bay.jpg"
-              alt="Interior Detailing Bay with Hexagonal Lighting and Mercedes-Benz"
-              className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-102"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
+          {/* Secondary Interior Cleanroom Bay Shot */}
+          <div className="lg:col-span-5 rounded-2xl overflow-hidden border border-white/15 bg-zinc-950 shadow-2xl flex flex-col group">
+            {/* 16:9 Responsive Image Container */}
+            <div className="relative w-full aspect-[16/9] sm:aspect-[16/10] lg:aspect-auto lg:h-[380px] overflow-hidden bg-black">
+              <img
+                src="/images/studio-bay.jpg"
+                alt="AV Car Care Detailing Bay with Hexagonal High-CRI Lighting and Precision Equipment"
+                className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-102"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
 
-            <div className="absolute bottom-4 left-4 right-4 p-3 sm:p-4 rounded-xl bg-zinc-950/85 backdrop-blur-md border border-white/10">
-              <span className="text-[10px] font-mono uppercase tracking-widest text-[#ff1a2b] font-bold">
-                LIGHTING BAY
+              <div className="absolute top-3 right-3 sm:top-4 sm:right-4 z-10">
+                <span className="px-2.5 py-1 rounded-md text-[10px] font-mono uppercase bg-black/85 backdrop-blur-md border border-[#d4af37]/40 text-[#fff0a8] font-bold">
+                  6500K Canopy
+                </span>
+              </div>
+            </div>
+
+            <div className="p-4 sm:p-5 bg-zinc-950/95 border-t border-white/10 flex flex-col justify-center">
+              <span className="text-[10px] font-mono uppercase tracking-widest text-[#d4af37] font-bold">
+                PRECISION BAY
               </span>
-              <p className="text-xs sm:text-sm font-bold text-white font-['Outfit'] mt-0.5">
-                Hexagonal High-CRI Canopy
+              <p className="text-sm font-bold text-white font-['Outfit'] mt-0.5">
+                Hexagonal High-CRI Light Canopy
               </p>
-              <p className="text-[11px] text-zinc-400 font-mono">
-                "Your Car. Our Passion."
+              <p className="text-xs text-zinc-400 font-mono">
+                "Protect • Enhance • Maintain • Drive Better"
               </p>
             </div>
           </div>
@@ -166,7 +187,7 @@ export default function StudioExperience({ onOpenBooking }) {
           {/* Section Sub-heading */}
           <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/10">
             <div>
-              <span className="text-[10px] font-mono uppercase tracking-wider text-[#ff1a2b] font-bold">
+              <span className="text-[10px] font-mono uppercase tracking-wider text-[#d4af37] font-bold">
                 CRAFTSMANSHIP ROADMAP
               </span>
               <h3 className="text-lg sm:text-2xl font-black text-white font-['Outfit'] mt-0.5">
@@ -175,15 +196,15 @@ export default function StudioExperience({ onOpenBooking }) {
             </div>
             <div className="text-right">
               <span className="text-xs font-mono text-zinc-400 hidden sm:inline">
-                Scroll to steer BMW •{" "}
+                Scroll to steer vehicle •{" "}
               </span>
-              <span className="text-xs font-mono font-bold text-[#ff1a2b]">
+              <span className="text-xs font-mono font-bold text-[#e5c158]">
                 {Math.round(scrollProgress * 100)}% Journey
               </span>
             </div>
           </div>
 
-          {/* Grid Layout: BMW Vertical Road Track + 5 Concise Cards */}
+          {/* Grid Layout: Vertical Road Runway Track + 5 Concise Cards */}
           <div className="grid grid-cols-[48px_1fr] sm:grid-cols-[64px_1fr] gap-3 sm:gap-6 items-start relative">
             {/* The Vertical Road Runway Track */}
             <div ref={trackRef} className="relative w-full h-full min-h-[460px] flex justify-center py-2 select-none">
@@ -198,9 +219,9 @@ export default function StudioExperience({ onOpenBooking }) {
                   }}
                 />
 
-                {/* Red Laser Progress Tracer Trail behind vehicle */}
+                {/* Laser Progress Tracer Trail behind vehicle */}
                 <div
-                  className="absolute top-0 inset-x-0 bg-gradient-to-b from-[#ff1a2b]/30 via-[#ff1a2b] to-[#ff4d5a] shadow-[0_0_12px_#ff1a2b] transition-all duration-75"
+                  className="absolute top-0 inset-x-0 bg-gradient-to-b from-[#ff1a2b]/30 via-[#d4af37] to-[#e5c158] shadow-[0_0_12px_#d4af37] transition-all duration-75"
                   style={{
                     height: `${carY + 8}px`,
                   }}
@@ -214,10 +235,9 @@ export default function StudioExperience({ onOpenBooking }) {
                   top: `${carY}px`,
                 }}
               >
-                {/* BMW M-Coupe Top-Down Silhouette Vector - Facing Forward Downwards */}
-                <div className="relative w-9 h-[54px] sm:w-11 sm:h-[62px] filter drop-shadow-[0_4px_14px_rgba(255,26,43,0.8)] rotate-180">
-                  {/* Headlight Glowing Light Beams (Projecting Forward onto Road Ahead) */}
-                  <div className="absolute top-[82%] left-1/2 -translate-x-1/2 w-16 sm:w-20 h-16 bg-gradient-to-b from-white/75 via-red-500/25 to-transparent blur-[3px] pointer-events-none" />
+                <div className="relative w-9 h-[54px] sm:w-11 sm:h-[62px] filter drop-shadow-[0_4px_14px_rgba(212,175,55,0.8)] rotate-180">
+                  {/* Headlight Glowing Light Beams */}
+                  <div className="absolute top-[82%] left-1/2 -translate-x-1/2 w-16 sm:w-20 h-16 bg-gradient-to-b from-white/75 via-gold-500/25 to-transparent blur-[3px] pointer-events-none" />
 
                   <svg
                     viewBox="0 0 48 84"
@@ -236,7 +256,7 @@ export default function StudioExperience({ onOpenBooking }) {
                     <path
                       d="M12 20 C12 10, 16 3, 24 3 C32 3, 36 10, 36 20 L38 38 C41 42, 42 56, 39 74 C38 78, 34 79, 24 79 C14 79, 10 78, 9 74 C6 56, 7 42, 10 38 Z"
                       fill="#0e0e12"
-                      stroke="#ff1a2b"
+                      stroke="#d4af37"
                       strokeWidth="1.5"
                     />
 
@@ -248,7 +268,7 @@ export default function StudioExperience({ onOpenBooking }) {
                       strokeWidth="1"
                     />
 
-                    {/* Front Windshield (Glass reflection) */}
+                    {/* Front Windshield */}
                     <path
                       d="M15 26 C17 22, 20 20, 24 20 C28 20, 31 22, 33 26 L34 35 L14 35 Z"
                       fill="#27272a"
@@ -265,28 +285,28 @@ export default function StudioExperience({ onOpenBooking }) {
                     />
 
                     {/* Side Mirrors */}
-                    <rect x="4" y="30" width="5" height="3" rx="1.5" fill="#ff1a2b" />
-                    <rect x="39" y="30" width="5" height="3" rx="1.5" fill="#ff1a2b" />
+                    <rect x="4" y="30" width="5" height="3" rx="1.5" fill="#d4af37" />
+                    <rect x="39" y="30" width="5" height="3" rx="1.5" fill="#d4af37" />
 
-                    {/* BMW Hood Power Dome & Twin Accent Lines */}
-                    <path d="M21 7 L21 18" stroke="#ff1a2b" strokeWidth="1" strokeLinecap="round" />
-                    <path d="M27 7 L27 18" stroke="#ff1a2b" strokeWidth="1" strokeLinecap="round" />
+                    {/* Hood Power Dome Accent Lines */}
+                    <path d="M21 7 L21 18" stroke="#d4af37" strokeWidth="1" strokeLinecap="round" />
+                    <path d="M27 7 L27 18" stroke="#d4af37" strokeWidth="1" strokeLinecap="round" />
 
-                    {/* Iconic BMW Twin Kidney Grille */}
-                    <rect x="18" y="3" width="5" height="2" rx="1" fill="#ff1a2b" />
-                    <rect x="25" y="3" width="5" height="2" rx="1" fill="#ff1a2b" />
+                    {/* Twin Grille */}
+                    <rect x="18" y="3" width="5" height="2" rx="1" fill="#d4af37" />
+                    <rect x="25" y="3" width="5" height="2" rx="1" fill="#d4af37" />
 
-                    {/* Sharp BMW Twin Laser Headlights (Glowing) */}
+                    {/* Laser Headlights */}
                     <polygon points="12,5 16,4 17,7 13,8" fill="#ffffff" />
                     <polygon points="36,5 32,4 31,7 35,8" fill="#ffffff" />
 
-                    {/* Rear LED L-Shaped Taillights */}
+                    {/* Rear LED Taillights */}
                     <path d="M12 75 L18 75 L18 77 L11 77 Z" fill="#ff1a2b" />
                     <path d="M36 75 L30 75 L30 77 L37 77 Z" fill="#ff1a2b" />
 
-                    {/* M Power Tricolor Accent Decal on Roof */}
-                    <rect x="22" y="38" width="1.5" height="12" fill="#0080ff" />
-                    <rect x="23.5" y="38" width="1.5" height="12" fill="#1e293b" />
+                    {/* Decal Accent on Roof */}
+                    <rect x="22" y="38" width="1.5" height="12" fill="#d4af37" />
+                    <rect x="23.5" y="38" width="1.5" height="12" fill="#ffffff" />
                     <rect x="25" y="38" width="1.5" height="12" fill="#ff1a2b" />
                   </svg>
                 </div>
@@ -303,13 +323,13 @@ export default function StudioExperience({ onOpenBooking }) {
                     key={m.step}
                     className={`p-3.5 sm:p-4 rounded-xl border transition-all duration-300 relative ${
                       isActive
-                        ? "bg-zinc-900 border-[#ff1a2b] shadow-lg shadow-red-950/30 scale-[1.01]"
+                        ? "bg-zinc-900 border-[#d4af37] shadow-lg shadow-black scale-[1.01]"
                         : "bg-zinc-950/80 border-white/5 opacity-85 hover:opacity-100 hover:border-white/15"
                     }`}
                   >
                     {/* Active Indicator Strip */}
                     {isActive && (
-                      <div className="absolute left-0 inset-y-0 w-1 bg-[#ff1a2b] rounded-l-xl shadow-[0_0_8px_#ff1a2b]" />
+                      <div className="absolute left-0 inset-y-0 w-1 bg-gradient-to-b from-[#ff1a2b] to-[#d4af37] rounded-l-xl shadow-[0_0_8px_#d4af37]" />
                     )}
 
                     <div className="flex items-center justify-between gap-2 mb-1">
@@ -317,7 +337,7 @@ export default function StudioExperience({ onOpenBooking }) {
                         <span
                           className={`text-xs font-mono font-bold px-2 py-0.5 rounded ${
                             isActive
-                              ? "bg-[#ff1a2b] text-white"
+                              ? "bg-[#d4af37] text-zinc-950"
                               : "bg-zinc-900 text-zinc-400 border border-white/5"
                           }`}
                         >
@@ -345,13 +365,13 @@ export default function StudioExperience({ onOpenBooking }) {
           {/* Compact Bottom Studio Action */}
           <div className="mt-6 pt-4 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3">
             <div className="flex items-center gap-2 text-xs font-mono text-zinc-300 text-center sm:text-left">
-              <span className="w-2 h-2 rounded-full bg-[#ff1a2b] animate-ping shrink-0" />
-              <span>Free 36-point paint depth gauge inspection with every visit</span>
+              <span className="w-2 h-2 rounded-full bg-[#d4af37] animate-ping shrink-0" />
+              <span>Complimentary 36-point clear coat audit with every studio visit</span>
             </div>
 
             <button
               onClick={() => onOpenBooking()}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-lg bg-[#ff1a2b] hover:bg-[#d61323] text-xs font-mono font-bold text-white uppercase transition-colors"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-lg bg-gradient-to-r from-[#ff1a2b] to-[#b30816] hover:from-[#ff3344] text-xs font-mono font-bold text-white uppercase transition-colors cursor-pointer"
             >
               <span>Book Studio Visit</span>
               <ArrowRight className="w-3.5 h-3.5" />

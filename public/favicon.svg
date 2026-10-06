@@ -1,8 +1,32 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
-  <rect width="64" height="64" rx="14" fill="#0c0c0e"/>
-  <path d="M8 38 C14 26, 26 20, 36 20 C46 20, 54 27, 56 34" stroke="#ff2434" stroke-width="4" stroke-linecap="round"/>
-  <path d="M14 42 C20 33, 28 29, 36 29 C44 29, 50 34, 52 39" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
-  <circle cx="21" cy="42" r="3.5" fill="#ff2434"/>
-  <circle cx="45" cy="42" r="3.5" fill="#ff2434"/>
-  <path d="M26 42 L40 42" stroke="#ff2434" stroke-width="2" stroke-linecap="round"/>
+  <defs>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff0a8"/>
+      <stop offset="35%" stop-color="#e5c158"/>
+      <stop offset="70%" stop-color="#d4af37"/>
+      <stop offset="100%" stop-color="#9a7b1c"/>
+    </linearGradient>
+    <linearGradient id="silverGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="50%" stop-color="#cfd4dc"/>
+      <stop offset="100%" stop-color="#8a929e"/>
+    </linearGradient>
+    <linearGradient id="redGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff3b4b"/>
+      <stop offset="50%" stop-color="#e60012"/>
+      <stop offset="100%" stop-color="#a8000d"/>
+    </linearGradient>
+  </defs>
+  <!-- Background -->
+  <rect width="64" height="64" rx="14" fill="#08080a" stroke="#22222a" stroke-width="1.5"/>
+  <!-- Red Top Energy Arc -->
+  <path d="M12 28 C16 16, 32 10, 48 13" stroke="url(#redGrad)" stroke-width="3" stroke-linecap="round"/>
+  <!-- Gold "A" -->
+  <path d="M14 44 L25 18 L32 34 L21 34 M19 39 L27 39" stroke="url(#goldGrad)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Silver/Chrome "V" -->
+  <path d="M30 18 L39 44 L51 18" stroke="url(#silverGrad)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Red Base Line -->
+  <line x1="12" y1="48" x2="52" y2="48" stroke="url(#redGrad)" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Gold Subline Dot -->
+  <circle cx="32" cy="54" r="1.5" fill="url(#goldGrad)"/>
 </svg>

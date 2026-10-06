@@ -49,7 +49,7 @@ export default function BeforeAfter({ onOpenBooking }) {
         <div className="max-w-5xl mx-auto">
           <div
             ref={containerRef}
-            className="relative h-[360px] sm:h-[480px] md:h-[540px] rounded-2xl overflow-hidden border border-white/15 select-none cursor-ew-resize bg-zinc-950 shadow-2xl shadow-black/90"
+            className="relative aspect-[16/10] sm:aspect-[16/9] md:aspect-auto md:h-[520px] rounded-2xl overflow-hidden border border-white/15 select-none cursor-ew-resize bg-zinc-950 shadow-2xl shadow-black/90"
             onMouseDown={() => setIsDragging(true)}
             onMouseUp={() => setIsDragging(false)}
             onMouseLeave={() => setIsDragging(false)}
@@ -66,9 +66,9 @@ export default function BeforeAfter({ onOpenBooking }) {
                 className="w-full h-full object-cover object-center pointer-events-none"
               />
               {/* After Badge */}
-              <div className="absolute top-5 right-5 px-3 py-1.5 rounded-lg bg-black/80 backdrop-blur-md border border-[#ff1a2b]/40 text-xs font-mono font-bold text-white uppercase tracking-wider flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-emerald-500" />
-                AFTER: 100% Mirror Correction
+              <div className="absolute top-2.5 right-2.5 sm:top-5 sm:right-5 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg bg-black/85 backdrop-blur-md border border-[#ff1a2b]/40 text-[10px] sm:text-xs font-mono font-bold text-white uppercase tracking-wider flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-emerald-500" />
+                AFTER: Mirror Finish
               </div>
             </div>
 
@@ -83,9 +83,9 @@ export default function BeforeAfter({ onOpenBooking }) {
                 className="w-full h-full object-cover object-center pointer-events-none"
               />
               {/* Before Badge */}
-              <div className="absolute top-5 left-5 px-3 py-1.5 rounded-lg bg-black/80 backdrop-blur-md border border-white/20 text-xs font-mono font-bold text-zinc-300 uppercase tracking-wider flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-rose-500" />
-                BEFORE: Heavy Swirls & Hazing
+              <div className="absolute top-2.5 left-2.5 sm:top-5 sm:left-5 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg bg-black/85 backdrop-blur-md border border-white/20 text-[10px] sm:text-xs font-mono font-bold text-zinc-300 uppercase tracking-wider flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-rose-500" />
+                BEFORE: Heavy Swirls
               </div>
             </div>
 
@@ -95,15 +95,15 @@ export default function BeforeAfter({ onOpenBooking }) {
               style={{ left: `calc(${sliderPosition}% - 2px)` }}
             >
               {/* Slider Center Circular Handle */}
-              <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-11 h-11 rounded-full bg-[#ff1a2b] border-2 border-white shadow-xl shadow-red-950 flex items-center justify-center text-white cursor-ew-resize">
-                <ArrowLeftRight className="w-5 h-5 animate-pulse" />
+              <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-[#ff1a2b] border-2 border-white shadow-xl shadow-red-950 flex items-center justify-center text-white cursor-ew-resize">
+                <ArrowLeftRight className="w-4 h-4 sm:w-5 sm:h-5 animate-pulse" />
               </div>
             </div>
 
             {/* Bottom Slider Control Tip */}
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-black/80 backdrop-blur-md border border-white/10 text-[11px] font-mono text-zinc-300 flex items-center gap-2 pointer-events-none">
-              <Eye className="w-3.5 h-3.5 text-[#ff1a2b]" />
-              <span>Drag or slide horizontally to compare paint finish</span>
+            <div className="absolute bottom-2.5 sm:bottom-4 left-1/2 -translate-x-1/2 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-black/85 backdrop-blur-md border border-white/10 text-[10px] sm:text-[11px] font-mono text-zinc-300 flex items-center gap-1.5 sm:gap-2 pointer-events-none whitespace-nowrap">
+              <Eye className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#ff1a2b]" />
+              <span>Drag to compare paint finish</span>
             </div>
           </div>
 

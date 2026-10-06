@@ -12,7 +12,7 @@ export default function Process({ onOpenBooking }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-zinc-900 border border-[#ff1a2b]/30 text-xs font-mono text-[#ff4d5a] uppercase tracking-widest mb-3">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-zinc-900 border border-[#d4af37]/30 text-xs font-mono text-[#e5c158] uppercase tracking-widest mb-3">
             <Clock className="w-3.5 h-3.5" />
             Methodology & Protocol
           </div>
@@ -22,7 +22,7 @@ export default function Process({ onOpenBooking }) {
           </h2>
 
           <p className="mt-4 text-zinc-400 text-sm sm:text-base leading-relaxed font-light">
-            Every vehicle in our Jaipur studio undergoes an uncompromising 4-stage systematic protocol to guarantee showroom-exceeding perfection.
+            Every vehicle in our studio undergoes an uncompromising 4-stage systematic protocol to guarantee showroom-exceeding perfection.
           </p>
         </div>
 
@@ -36,9 +36,9 @@ export default function Process({ onOpenBooking }) {
               <button
                 key={step.step}
                 onClick={() => setActiveStep(idx)}
-                className={`relative p-5 rounded-xl border text-left transition-all duration-300 flex flex-col justify-between ${
+                className={`relative p-5 rounded-xl border text-left transition-all duration-300 flex flex-col justify-between cursor-pointer ${
                   isActive
-                    ? "bg-zinc-900 border-[#ff1a2b] shadow-xl shadow-red-950/40"
+                    ? "bg-zinc-900 border-[#d4af37] shadow-xl shadow-black"
                     : "bg-zinc-950/60 border-white/10 hover:border-white/20 hover:bg-zinc-900/40"
                 }`}
               >
@@ -46,14 +46,14 @@ export default function Process({ onOpenBooking }) {
                 <div className="flex items-center justify-between mb-4">
                   <span
                     className={`text-2xl font-black font-['Space_Grotesk'] ${
-                      isActive ? "text-[#ff1a2b]" : "text-zinc-600"
+                      isActive ? "text-[#e5c158]" : "text-zinc-600"
                     }`}
                   >
                     {step.step}
                   </span>
                   <div
                     className={`p-2 rounded-lg ${
-                      isActive ? "bg-[#ff1a2b] text-white" : "bg-zinc-900 text-zinc-400"
+                      isActive ? "bg-gradient-to-r from-[#ff1a2b] to-[#d4af37] text-white" : "bg-zinc-900 text-zinc-400"
                     }`}
                   >
                     <Icon className="w-4 h-4" />
@@ -71,7 +71,7 @@ export default function Process({ onOpenBooking }) {
 
                 {/* Active Underline */}
                 {isActive && (
-                  <div className="absolute bottom-0 inset-x-0 h-1 bg-[#ff1a2b] rounded-b-xl" />
+                  <div className="absolute bottom-0 inset-x-0 h-1 bg-gradient-to-r from-[#ff1a2b] to-[#d4af37] rounded-b-xl" />
                 )}
               </button>
             );
@@ -82,13 +82,13 @@ export default function Process({ onOpenBooking }) {
         <div className="hidden lg:block p-8 rounded-2xl bg-zinc-950/80 border border-white/15 backdrop-blur-md">
           <div className="grid grid-cols-12 gap-8 items-center">
             <div className="col-span-4">
-              <div className="text-7xl font-black font-['Space_Grotesk'] text-[#ff1a2b]/20">
+              <div className="text-7xl font-black font-['Space_Grotesk'] text-[#d4af37]/20">
                 {PROCESS_STEPS[activeStep].step}
               </div>
               <h3 className="text-3xl font-black text-white font-['Outfit'] uppercase -mt-4">
                 {PROCESS_STEPS[activeStep].title}
               </h3>
-              <p className="text-sm font-mono text-[#ff4d5a] mt-1">
+              <p className="text-sm font-mono text-[#e5c158] mt-1">
                 {PROCESS_STEPS[activeStep].subtitle}
               </p>
             </div>
@@ -117,10 +117,10 @@ export default function Process({ onOpenBooking }) {
             return (
               <div
                 key={step.step}
-                className="relative pl-8 border-l-2 border-[#ff1a2b]/30 pb-6 last:pb-0"
+                className="relative pl-8 border-l-2 border-[#d4af37]/30 pb-6 last:pb-0"
               >
                 {/* Timeline node */}
-                <div className="absolute -left-[17px] top-0 w-8 h-8 rounded-full bg-zinc-900 border-2 border-[#ff1a2b] flex items-center justify-center text-[#ff1a2b] font-bold text-xs font-mono">
+                <div className="absolute -left-[17px] top-0 w-8 h-8 rounded-full bg-zinc-900 border-2 border-[#d4af37] flex items-center justify-center text-[#e5c158] font-bold text-xs font-mono">
                   {step.step}
                 </div>
 
@@ -130,11 +130,11 @@ export default function Process({ onOpenBooking }) {
                       <h3 className="text-lg font-bold text-white font-['Outfit'] uppercase">
                         {step.title}
                       </h3>
-                      <p className="text-xs font-mono text-[#ff4d5a]">
+                      <p className="text-xs font-mono text-[#e5c158]">
                         {step.subtitle}
                       </p>
                     </div>
-                    <Icon className="w-5 h-5 text-[#ff1a2b]" />
+                    <Icon className="w-5 h-5 text-[#d4af37]" />
                   </div>
 
                   <p className="text-xs text-zinc-400 font-light leading-relaxed">
@@ -159,7 +159,7 @@ export default function Process({ onOpenBooking }) {
         <div className="mt-14 text-center">
           <button
             onClick={() => onOpenBooking()}
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg text-xs font-mono font-bold uppercase tracking-wider text-white bg-[#ff1a2b] hover:bg-[#d61323] transition-colors shadow-lg shadow-red-950/40"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg text-xs font-mono font-bold uppercase tracking-wider text-white bg-gradient-to-r from-[#ff1a2b] to-[#b30816] hover:from-[#ff3344] transition-colors shadow-lg shadow-red-950/40 cursor-pointer"
           >
             <span>Book Your Studio Slot</span>
             <ChevronRight className="w-4 h-4" />

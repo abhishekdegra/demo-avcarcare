@@ -70,19 +70,19 @@ export default function App() {
         {/* Interactive Before & After Paint Correction Slider */}
         <BeforeAfter onOpenBooking={handleOpenBooking} />
 
-        {/* Why Detailing Rebels (Trust & Standards) */}
+        {/* Why AV Car Care (Trust & Standards) */}
         <WhyUs onOpenBooking={handleOpenBooking} />
 
         {/* 4-Step Systematic Protocol Timeline */}
         <Process onOpenBooking={handleOpenBooking} />
 
-        {/* Real Studio Facility Experience (Jaipur) */}
+        {/* Real Studio Facility Experience */}
         <StudioExperience onOpenBooking={handleOpenBooking} />
 
         {/* Editorial Automotive Gallery & Full Lightbox */}
         <Gallery />
 
-        {/* Authentic Customer Feedback & Google Reviews */}
+        {/* Client Standards & Experience */}
         <Reviews />
 
         {/* Contact, Call & Studio Location */}

@@ -1,5 +1,5 @@
 import React from "react";
-import { MapPin, Phone, MessageCircle, Clock, Navigation, ArrowUpRight, ShieldCheck, Mail } from "lucide-react";
+import { MapPin, Phone, MessageCircle, Clock, Navigation, Calendar, ShieldCheck, ArrowRight } from "lucide-react";
 import { STUDIO_INFO } from "../data/content";
 
 export default function Contact({ onOpenBooking }) {
@@ -8,18 +8,20 @@ export default function Contact({ onOpenBooking }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="max-w-3xl mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-zinc-900 border border-[#ff1a2b]/30 text-xs font-mono text-[#ff4d5a] uppercase tracking-widest mb-3">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-zinc-900 border border-[#d4af37]/30 text-xs font-mono text-[#e5c158] uppercase tracking-widest mb-3">
             <MapPin className="w-3.5 h-3.5" />
             Studio Location & Inquiries
           </div>
 
           <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight uppercase font-['Outfit'] leading-none">
-            DETAILING REBELS <br />
-            <span className="text-[#ff1a2b]">JAIPUR STUDIO</span>
+            AV CAR CARE <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fff0a8] via-[#e5c158] to-[#ff1a2b]">
+              STUDIO & CONTACT
+            </span>
           </h2>
 
           <p className="mt-4 text-zinc-400 text-sm sm:text-base font-light">
-            Conveniently accessible across Jaipur. Bring your vehicle in for a complimentary paint inspection and custom consultation.
+            Connect directly with our master technicians for vehicle inspection, PPF consultation, and custom package quotes.
           </p>
         </div>
 
@@ -29,7 +31,7 @@ export default function Contact({ onOpenBooking }) {
             <div className="space-y-6">
               {/* Studio Info */}
               <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-lg bg-[#ff1a2b]/15 border border-[#ff1a2b]/30 flex items-center justify-center text-[#ff1a2b] shrink-0">
+                <div className="w-10 h-10 rounded-lg bg-[#d4af37]/15 border border-[#d4af37]/30 flex items-center justify-center text-[#e5c158] shrink-0">
                   <MapPin className="w-5 h-5" />
                 </div>
                 <div>
@@ -37,10 +39,10 @@ export default function Contact({ onOpenBooking }) {
                     Studio Location
                   </h4>
                   <p className="text-base font-semibold text-white mt-0.5">
-                    Detailing Rebels Detailing Studio
+                    AV Car Care Studio
                   </p>
                   <p className="text-xs text-zinc-300 font-light mt-0.5 leading-relaxed">
-                    Main Detailing Hub, Jaipur, Rajasthan, India
+                    Location details available upon enquiry. Contact our studio coordinator for direct directions and slot reservation.
                   </p>
                 </div>
               </div>
@@ -70,47 +72,45 @@ export default function Contact({ onOpenBooking }) {
                 </div>
                 <div>
                   <h4 className="text-xs font-mono uppercase tracking-wider text-zinc-400">
-                    Direct Phone Line
+                    Direct Phone / WhatsApp
                   </h4>
                   <a
                     href={`tel:${STUDIO_INFO.phone.replace(/\s+/g, "")}`}
-                    className="text-lg font-bold text-white hover:text-[#ff1a2b] transition-colors font-mono mt-0.5 block"
+                    className="text-lg font-bold text-white hover:text-[#e5c158] transition-colors font-mono mt-0.5 block"
                   >
                     {STUDIO_INFO.phone}
                   </a>
                   <p className="text-xs text-zinc-400 font-light mt-0.5">
-                    Call for immediate assistance or slot booking
+                    Call or message for instant consultation
                   </p>
                 </div>
               </div>
             </div>
 
-            {/* Action Buttons */}
+            {/* Action Buttons as requested: CALL NOW, WHATSAPP, BOOK NOW */}
             <div className="space-y-3 pt-4 border-t border-white/10">
-              <a
-                href={STUDIO_INFO.mapUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full flex items-center justify-center gap-2 py-3.5 rounded-lg bg-zinc-800 hover:bg-zinc-700 border border-white/10 text-white text-xs font-mono font-bold uppercase tracking-wider transition-colors"
+              <button
+                onClick={() => onOpenBooking()}
+                className="w-full flex items-center justify-center gap-2 py-3.5 rounded-lg bg-gradient-to-r from-[#ff1a2b] via-[#e61222] to-[#b30816] hover:from-[#ff3344] hover:to-[#c70f1e] text-white text-xs font-mono font-bold uppercase tracking-wider shadow-lg shadow-red-950/40 transition-all cursor-pointer"
               >
-                <Navigation className="w-4 h-4 text-[#ff1a2b]" />
-                <span>Get Directions (Google Maps)</span>
-              </a>
+                <Calendar className="w-4 h-4" />
+                <span>Book Now</span>
+              </button>
 
               <div className="grid grid-cols-2 gap-3">
                 <a
                   href={`tel:${STUDIO_INFO.phone.replace(/\s+/g, "")}`}
-                  className="flex items-center justify-center gap-2 py-3 rounded-lg bg-zinc-900 hover:bg-zinc-800 border border-white/10 text-xs font-mono text-white transition-colors"
+                  className="flex items-center justify-center gap-2 py-3 rounded-lg bg-zinc-900 hover:bg-zinc-800 border border-white/10 text-xs font-mono font-bold uppercase tracking-wider text-white transition-colors"
                 >
-                  <Phone className="w-3.5 h-3.5 text-[#ff1a2b]" />
+                  <Phone className="w-3.5 h-3.5 text-[#e5c158]" />
                   <span>Call Now</span>
                 </a>
 
                 <a
-                  href={`https://wa.me/${STUDIO_INFO.whatsappNumber}?text=Hello%20Detailing%20Rebels%20Jaipur,%20I%20would%20like%20to%20book%20a%20detailing%20slot.`}
+                  href={`https://wa.me/${STUDIO_INFO.whatsappNumber}?text=Hello%20AV%20Car%20Care,%20I%20would%20like%20to%20enquire%20about%20your%20services.`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 py-3 rounded-lg bg-emerald-950/40 hover:bg-emerald-900/50 border border-emerald-500/30 text-xs font-mono text-emerald-300 transition-colors"
+                  className="flex items-center justify-center gap-2 py-3 rounded-lg bg-emerald-950/40 hover:bg-emerald-900/50 border border-emerald-500/30 text-xs font-mono font-bold uppercase tracking-wider text-emerald-300 transition-colors"
                 >
                   <MessageCircle className="w-3.5 h-3.5 text-emerald-400" />
                   <span>WhatsApp</span>
@@ -119,28 +119,57 @@ export default function Contact({ onOpenBooking }) {
             </div>
           </div>
 
-          {/* Right Map Embed / Styled Detailing Hub Display */}
-          <div className="lg:col-span-7 rounded-2xl overflow-hidden border border-white/15 bg-zinc-950 relative min-h-[400px] flex flex-col justify-between">
-            {/* Interactive Google Map iframe targeting Jaipur */}
-            <iframe
-              title="Detailing Rebels Jaipur Location Map"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d113888.75628549646!2d75.72714272895696!3d26.88514175373656!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396c4adf4c57e281%3A0xce1c63a0cf22e09!2sJaipur%2C%20Rajasthan!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
-              className="w-full h-full min-h-[380px] border-0 filter invert contrast-125 opacity-80 hover:opacity-100 transition-opacity"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
+          {/* Right Visual Facility Showcase & Google Maps Ready Container */}
+          <div className="lg:col-span-7 rounded-2xl overflow-hidden border border-white/15 bg-zinc-950 flex flex-col shadow-2xl justify-between">
+            {/* 16:9 Responsive Image Container with Zero Cropping */}
+            <div className="relative w-full aspect-[16/9] sm:aspect-[16/10] lg:aspect-auto lg:h-[320px] overflow-hidden bg-black group">
+              <img
+                src="/images/av-car-care-garage.jpg"
+                alt="AV Car Care Studio Facility"
+                className="w-full h-full object-cover object-center filter brightness-95 transition-transform duration-700 group-hover:scale-102"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
 
-            {/* Studio Badge on top of Map */}
-            <div className="absolute top-4 left-4 p-3 rounded-xl bg-black/85 backdrop-blur-md border border-white/15 max-w-xs shadow-xl pointer-events-none">
-              <span className="text-[10px] font-mono text-[#ff4d5a] uppercase font-bold tracking-wider">
-                FLAGSHIP STUDIO
-              </span>
-              <p className="text-xs font-bold text-white font-['Outfit'] mt-0.5">
-                Detailing Rebels Studio • Jaipur
-              </p>
-              <p className="text-[11px] text-zinc-400 font-mono mt-0.5">
-                Dust-Free Climate Controlled Facility
-              </p>
+              {/* Discreet Top Badge */}
+              <div className="absolute top-3 right-3 sm:top-4 sm:right-4 z-10">
+                <span className="px-2.5 py-1 rounded text-[10px] font-mono uppercase bg-black/85 backdrop-blur-md border border-[#d4af37]/40 text-[#fff0a8] font-bold">
+                  Official Facility
+                </span>
+              </div>
+            </div>
+
+            {/* Studio Info Bar Below Image (Never Obscures the Facility Visual) */}
+            <div className="p-4 sm:p-5 bg-zinc-950/95 border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div className="flex items-center gap-3">
+                <div className="h-12 w-auto max-w-[120px] rounded bg-black p-1 border border-white/10 shrink-0">
+                  <img
+                    src="/images/av-car-care-logo.jpg"
+                    alt="AV Car Care"
+                    className="h-full w-auto object-contain"
+                  />
+                </div>
+                <div>
+                  <span className="text-[10px] font-mono text-[#d4af37] uppercase font-bold tracking-wider">
+                    OFFICIAL STUDIO
+                  </span>
+                  <h3 className="text-sm font-bold text-white font-['Outfit']">
+                    AV Car Care
+                  </h3>
+                  <p className="text-xs text-zinc-400 font-mono">
+                    +91 86965 36692
+                  </p>
+                </div>
+              </div>
+
+              <a
+                href={STUDIO_INFO.mapUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-lg bg-zinc-900 border border-white/15 text-xs font-mono text-zinc-200 hover:text-white hover:border-[#d4af37]/50 transition-colors w-full sm:w-auto"
+              >
+                <Navigation className="w-3.5 h-3.5 text-[#e5c158]" />
+                <span>Open in Maps</span>
+              </a>
             </div>
           </div>
         </div>

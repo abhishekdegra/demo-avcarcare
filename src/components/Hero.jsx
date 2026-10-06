@@ -3,15 +3,15 @@ import { Calendar, MessageCircle, ChevronDown, CheckCircle2 } from "lucide-react
 import { STUDIO_INFO } from "../data/content";
 
 export default function Hero({ onOpenBooking }) {
-  const [activeHeroImg, setActiveHeroImg] = useState("/images/hero-stealth-car.jpg");
+  const [activeHeroImg, setActiveHeroImg] = useState("/images/av-car-care-garage.jpg");
   const [mouseOffset, setMouseOffset] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
-    // Parallax tracking only on desktop
+    // Subtle parallax tracking only on desktop
     const handleMouseMove = (e) => {
       if (window.innerWidth < 1024) return;
       const { innerWidth, innerHeight } = window;
-      const x = (e.clientX / innerWidth - 0.5) * 16; // subtle shift
+      const x = (e.clientX / innerWidth - 0.5) * 16;
       const y = (e.clientY / innerHeight - 0.5) * 16;
       setMouseOffset({ x, y });
     };
@@ -22,8 +22,8 @@ export default function Hero({ onOpenBooking }) {
 
   const heroStats = [
     { label: "Dust-Free", value: "100%", sub: "Sealed Detailing Bays" },
-    { label: "Surface Hardness", value: "10H", sub: "Nano-Ceramic Bond" },
-    { label: "PPF Warranty", value: "5–10 Yrs", sub: "Self-Healing TPU" },
+    { label: "Surface Hardness", value: "10H", sub: "Borophene & Ceramic Bond" },
+    { label: "PPF Protection", value: "Self-Healing", sub: "Optical Grade TPU" },
     { label: "Studio Standard", value: "6500K", sub: "True-Color CRI Lights" },
   ];
 
@@ -33,23 +33,23 @@ export default function Hero({ onOpenBooking }) {
       <div
         className="absolute inset-0 z-0 overflow-hidden pointer-events-none transition-transform duration-300 ease-out"
         style={{
-          transform: `translate3d(${-mouseOffset.x * 0.8}px, ${-mouseOffset.y * 0.8}px, 0) scale(1.05)`,
+          transform: `translate3d(${-mouseOffset.x * 0.8}px, ${-mouseOffset.y * 0.8}px, 0) scale(1.04)`,
         }}
       >
         <img
           src={activeHeroImg}
-          alt="Detailing Rebels Studio Jaipur - Luxury Automotive Detailing"
-          className="w-full h-full object-cover object-center transition-all duration-1000 ease-out"
+          alt="AV Car Care Studio - Premium Automotive Care and Detailing"
+          className="w-full h-full object-cover object-[center_28%] sm:object-[center_35%] transition-all duration-1000 ease-out"
         />
 
         {/* Studio-Grade Dark Gradients & Cinematic Vignette */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#08080a] via-[#08080a]/70 to-[#08080a]/50" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#08080a]/90 via-[#08080a]/40 to-[#08080a]/90" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_30%,#08080a_85%)]" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#060608] via-[#060608]/75 to-[#060608]/50" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#060608]/90 via-[#060608]/40 to-[#060608]/90" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_25%,#060608_85%)]" />
 
-        {/* Moving Red Light Streak */}
+        {/* Moving Red & Gold Light Streak */}
         <div
-          className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[750px] h-[380px] bg-[#ff1a2b]/15 rounded-full blur-[140px] transition-transform duration-500 ease-out"
+          className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[750px] h-[380px] bg-gradient-to-r from-[#ff1a2b]/15 via-[#d4af37]/10 to-[#ff1a2b]/15 rounded-full blur-[140px] transition-transform duration-500 ease-out"
           style={{
             transform: `translate3d(calc(-50% + ${mouseOffset.x * 2}px), ${mouseOffset.y * 2}px, 0)`,
           }}
@@ -59,8 +59,8 @@ export default function Hero({ onOpenBooking }) {
       {/* Hexagonal Pattern Overlay for Detailing Bay Ambiance */}
       <div className="absolute inset-0 hex-pattern opacity-30 pointer-events-none z-0" />
 
-      {/* Subtle Red Horizon Line */}
-      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#ff1a2b]/50 to-transparent" />
+      {/* Subtle Red & Gold Horizon Line */}
+      <div className="absolute top-0 inset-x-0 h-px red-gold-accent-line" />
 
       {/* Hero Content */}
       <div
@@ -69,11 +69,11 @@ export default function Hero({ onOpenBooking }) {
           transform: `translate3d(${mouseOffset.x * 0.4}px, ${mouseOffset.y * 0.4}px, 0)`,
         }}
       >
-        {/* Top Micro-Label */}
-        <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-zinc-950/80 border border-white/10 backdrop-blur-md mb-6 shadow-2xl">
+        {/* Top Micro-Label with Official Logo Preview */}
+        <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-zinc-950/85 border border-[#d4af37]/30 backdrop-blur-md mb-6 shadow-2xl">
           <span className="w-2 h-2 rounded-full bg-[#ff1a2b] animate-ping" />
-          <span className="text-[11px] font-mono uppercase tracking-[0.25em] text-zinc-300 font-semibold">
-            PREMIUM AUTOMOTIVE DETAILING • JAIPUR
+          <span className="text-[11px] font-mono uppercase tracking-[0.25em] text-transparent bg-clip-text bg-gradient-to-r from-[#fff3b8] via-[#e5c158] to-[#d4af37] font-bold">
+            AV CAR CARE • PREMIUM AUTOMOTIVE CARE
           </span>
         </div>
 
@@ -83,14 +83,14 @@ export default function Hero({ onOpenBooking }) {
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-200 to-zinc-400">
             OUR{" "}
           </span>
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff1a2b] via-[#ff3b4b] to-[#e60012] text-glow">
-            OBSESSION.
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fff0a8] via-[#e5c158] to-[#d4af37] text-gold-glow">
+            PRIDE.
           </span>
         </h1>
 
         {/* Description */}
         <p className="mt-6 text-base sm:text-lg md:text-xl text-zinc-300 max-w-2xl font-light leading-relaxed">
-          Precision detailing, paint protection and premium car care for people who expect more from their car.
+          Premium automotive care, detailing and protection for cars that deserve the best.
         </p>
 
         {/* Key Feature Pills */}
@@ -99,9 +99,9 @@ export default function Hero({ onOpenBooking }) {
             <CheckCircle2 className="w-3.5 h-3.5 text-[#ff1a2b]" />
             Self-Healing TPU Film
           </span>
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-zinc-900/80 border border-white/10">
-            <CheckCircle2 className="w-3.5 h-3.5 text-[#ff1a2b]" />
-            10H Liquid Candy Gloss
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-zinc-900/80 border border-[#d4af37]/30">
+            <CheckCircle2 className="w-3.5 h-3.5 text-[#e5c158]" />
+            Borophene & 10H Ceramic
           </span>
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-zinc-900/80 border border-white/10">
             <CheckCircle2 className="w-3.5 h-3.5 text-[#ff1a2b]" />
@@ -122,26 +122,26 @@ export default function Hero({ onOpenBooking }) {
           </button>
 
           <a
-            href={`https://wa.me/${STUDIO_INFO.whatsappNumber}?text=Hello%20Detailing%20Rebels%20Jaipur,%20I%20would%20like%20to%20inquire%20about%20detailing%20my%20car.`}
+            href={`https://wa.me/${STUDIO_INFO.whatsappNumber}?text=Hello%20AV%20Car%20Care,%20I%20would%20like%20to%20enquire%20about%20detailing%20my%20car.`}
             target="_blank"
             rel="noopener noreferrer"
             data-cursor="CHAT"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-lg text-sm font-bold font-mono tracking-wider uppercase text-zinc-200 bg-zinc-900/90 hover:bg-zinc-800 border border-white/15 hover:border-emerald-500/50 hover:text-emerald-400 transition-all duration-200 hover:-translate-y-0.5"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-lg text-sm font-bold font-mono tracking-wider uppercase text-zinc-200 bg-zinc-900/90 hover:bg-zinc-800 border border-white/15 hover:border-emerald-500/50 hover:text-emerald-400 transition-all duration-200 hover:-translate-y-0.5 cursor-pointer"
           >
             <MessageCircle className="w-4 h-4 text-emerald-500" />
             <span>WhatsApp Us</span>
           </a>
         </div>
 
-        {/* Hero Vehicle Switcher Pills */}
+        {/* Hero Studio Switcher Pills */}
         <div className="mt-8 flex items-center gap-2 p-1.5 rounded-full bg-zinc-950/80 border border-white/10 backdrop-blur-md">
           <span className="text-[10px] font-mono uppercase text-zinc-400 pl-3 pr-1 hidden sm:inline">
             Studio Views:
           </span>
           {[
-            { label: "Stealth EV6", src: "/images/hero-stealth-car.jpg" },
-            { label: "Mercedes Bay", src: "/images/studio-mercedes-bay.jpg" },
-            { label: "Studio Facade", src: "/images/studio-facade.jpg" },
+            { label: "AV Studio Bay", src: "/images/av-car-care-garage.jpg" },
+            { label: "Cleanroom Bay", src: "/images/studio-bay.jpg" },
+            { label: "PPF Installation", src: "/images/ppf-application.jpg" },
           ].map((item) => (
             <button
               key={item.label}
@@ -163,9 +163,9 @@ export default function Hero({ onOpenBooking }) {
           {heroStats.map((stat, i) => (
             <div
               key={i}
-              className="p-3.5 rounded-lg bg-zinc-950/60 border border-white/5 backdrop-blur-sm flex flex-col items-center text-center group hover:border-[#ff1a2b]/30 transition-colors"
+              className="p-3.5 rounded-lg bg-zinc-950/60 border border-white/5 backdrop-blur-sm flex flex-col items-center text-center group hover:border-[#d4af37]/40 transition-colors"
             >
-              <span className="text-xl sm:text-2xl font-black text-white font-['Space_Grotesk'] tracking-tight group-hover:text-[#ff1a2b] transition-colors">
+              <span className="text-xl sm:text-2xl font-black text-white font-['Space_Grotesk'] tracking-tight group-hover:text-[#e5c158] transition-colors">
                 {stat.value}
               </span>
               <span className="text-xs font-semibold text-zinc-300 uppercase tracking-wider mt-0.5">
